@@ -151,9 +151,7 @@ function airi_scripts() {
 	//Deregister FontAwesome from Elementor
 	wp_deregister_style( 'font-awesome' );
 
-	if ( !class_exists( 'Kirki_Fonts' ) ) {
-		wp_enqueue_style( 'airi-fonts', '//fonts.googleapis.com/css?family=Work+Sans:400,500,600', array(), null );
-	}
+	airi_fonts_load();
 
 	//Load masonry
 	$blog_layout = airi_blog_layout();
@@ -181,10 +179,13 @@ function airi_elementor_scripts() {
 add_action('elementor/frontend/after_register_scripts', 'airi_elementor_scripts');
 
  /**
- * Enqueue Bootstrap
+ * Enqueue Bootstrap (version)
  */
 function airi_enqueue_bootstrap() {
-	wp_enqueue_style( 'airi-bootstrap', get_template_directory_uri() . '/css/bootstrap/bootstrap.min.css', array(), true );
+	$_v = '';
+	$_v = '5';
+	wp_enqueue_style( 'airi-bootstrap', get_template_directory_uri() . "/css/bootstrap{$_v}/bootstrap.min.css", array(), true );
+	// wp_enqueue_style( 'airi-bootstrap', get_template_directory_uri() . '/css/bootstrap/bootstrap.min.css', array(), true );
 }
 add_action( 'wp_enqueue_scripts', 'airi_enqueue_bootstrap', 9 );
 
@@ -195,9 +196,7 @@ function airi_editor_styles() {
 	
 	wp_enqueue_style( 'airi-block-editor-styles', get_theme_file_uri( '/editor-styles.css' ), '', '1.0', 'all' );
 	
-	if ( !class_exists( 'Kirki_Fonts' ) ) {
-		wp_enqueue_style( 'airi-fonts', '//fonts.googleapis.com/css?family=Work+Sans:400,500,600', array(), null );
-	}
+	airi_fonts_load();
 }
 add_action( 'enqueue_block_editor_assets', 'airi_editor_styles' );
 
@@ -322,3 +321,19 @@ require get_template_directory() . '/inc/theme-dashboard-settings.php';
  * Review notice
  */
 require get_template_directory() . '/inc/notices/class-airi-review.php';
+
+function airi_fonts_load()
+{
+	/*
+	if ( !class_exists( 'Kirki_Fonts' ) ) {
+		wp_enqueue_style( 'airi-fonts', '//fonts.googleapis.com/css?family=Work+Sans:400,500,600', array(), null );
+	}
+	*/
+	if ( !class_exists( 'Kirki_Fonts' ) ) {
+		wp_enqueue_style( 'airi-fonts', '//fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap', array(), null );
+		/*
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+		*/
+	}
+}

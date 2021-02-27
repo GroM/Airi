@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
-Theme Name: Airi
+Theme Name: Airi-Provision
 Theme URI: https://athemes.com/theme/airi
 Author: aThemes
 Author URI: https://athemes.com
@@ -48,7 +48,7 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
 # Typography
 --------------------------------------------------------------*/
 body {
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 16px;
 }
 
@@ -64,7 +64,7 @@ textarea {
 
 h1, h2, h3, h4, h5, h6 {
   clear: both;
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: #191919;
   font-weight: 500;
 }
@@ -4223,7 +4223,7 @@ ul.social-media-list li {
 }
 .athemes-blog.airi_athemes_blog_skin_6 .post-item .post-content .posted-on a {
   color: #0a8ae6;
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 14px;
   letter-spacing: 2px;
 }
@@ -4241,7 +4241,7 @@ ul.social-media-list li {
   border-bottom-color: #191919;
 }
 .athemes-blog.airi_athemes_blog_skin_6 .post-item .first-cat {
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
   background-color: #0a8ae6;
   color: #fff;
   display: inline-block;
