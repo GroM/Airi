@@ -21,14 +21,14 @@
 				</button>
 			</div>
 
-			<nav id="site-navigation" class="main-navigation col-md-8">
+			<nav id="site-navigation" class="main-navigation mt-3">
 				<?php
 					wp_nav_menu( array(
 						'theme_location' => 'menu-1',
 						'menu_id'        => 'primary-menu',
 					) );
 				?>
-
+				<a href="#" class="btn btn-ar-primary ml-5">Darmowa wycena</a>
 				<?php airi_header_cart_search(); ?>
 			</nav><!-- #site-navigation -->
 

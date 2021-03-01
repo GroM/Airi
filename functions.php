@@ -6,7 +6,7 @@
  *
  * @package Airi
  */
-
+define( 'AIRI_SKIP_AIRI_KIRKI_CUSTOM', 1 );
 if ( ! function_exists( 'airi_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.

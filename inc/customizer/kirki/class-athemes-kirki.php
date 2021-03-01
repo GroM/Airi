@@ -34,9 +34,10 @@ class Airi_Kirki {
 	 */
 	public function __construct() {
 		// If Kirki exists then there's no reason to procedd
-		if ( class_exists( 'Kirki' ) ) {
+		if ( class_exists( 'Kirki' ) || defined( 'AIRI_SKIP_AIRI_KIRKI_CUSTOM' ) ) {
 			return;
 		}
+		
 		// Add our CSS
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ), 20 );
 		// Add google fonts

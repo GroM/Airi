@@ -98,9 +98,13 @@ function airi_get_extended1_options() {
 			'icon'		=> 'fa-facebook',
 			'link_url'  => 'https://facebook.com/yourprofile',
 		),
+		// array(
+		// 	'icon'		=> 'fa-twitter',			
+		// 	'link_url'  => 'https://twitter.com/yourprofile',
+		// ),
 		array(
-			'icon'		=> 'fa-twitter',			
-			'link_url'  => 'https://twitter.com/yourprofile',
+			'icon'		=> 'fa-instagram',			
+			'link_url'  => 'https://instagram.com/yourprofile',
 		),
 	);
 
@@ -322,13 +326,9 @@ if ( !function_exists( 'airi_site_branding' ) ) {
 		if ( has_custom_logo() ) :
 			the_custom_logo();
 		else :
-			if ( is_front_page() && is_home() ) : ?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-			<?php else : ?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-			<?php
-			endif;
-
+			$_tag = ( is_front_page() && is_home() ) ? 'h1' : 'p'; ?>
+			<<?php echo $_tag; ?> class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo esc_url( get_theme_file_uri( 'images/logo.svg' ) ); ?>" /> <?php bloginfo( 'name' ); ?></a></<?php echo $_tag; ?>>
+		<?php
 			$description = get_bloginfo( 'description', 'display' );
 			if ( $description || is_customize_preview() ) : ?>
 				<p class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></p>
