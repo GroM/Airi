@@ -28,7 +28,7 @@
 						'menu_id'        => 'primary-menu',
 					) );
 				?>
-				<a href="#" class="btn btn-ar-primary ml-5">Darmowa wycena</a>
+				<a href="#" class="btn btn-ar-primary btn-quote">Darmowa wycena</a>
 				<?php airi_header_cart_search(); ?>
 			</nav><!-- #site-navigation -->
 

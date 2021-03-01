@@ -373,10 +373,6 @@ a:hover, a:active {
 	}
 }
 
-.menuStyle2 .main-navigation a:hover {
-	border-bottom: 1px solid var(--bs-primary);
-	background-color: var(--ar-light);
-}
 .menuStyle2 .main-navigation a:hover:after,
 .menuStyle2 .main-navigation .current-menu-item:after {
 	content: '';
@@ -1430,21 +1426,27 @@ a:hover, a:active {
 	-webkit-box-pack: end;
 	-ms-flex-pack: end;
 	justify-content: flex-end;
-	align-items: stretch;
+	align-items: center;
 }
 
-ul.header-search-cart {
-	margin-left: 85px;
+.main-navigation .btn-quote {
+	display: block;
+	margin-left: 2rem;
+	margin-right: 2rem;
 }
+
 ul.header-search-cart li {
 	padding: 0;
 }
+
 ul.header-search-cart .header-search-toggle {
 	cursor: pointer;
 }
+
 ul.header-search-cart .header-cart-link {
 	margin-left: 25px;
 }
+
 ul.header-search-cart .header-cart-link .count {
 	font-size: 0.75rem;
 	position: relative;
