@@ -18,9 +18,15 @@
 			echo 	'</div>';
 			echo '</div>';
 		}
+		
+		wp_nav_menu( array(
+			'theme_location' => 'menu-2',
+			'menu_id'        => 'footer-menu',
+			'fallback_cb'    => false,
+		) );
+	
+		get_sidebar( 'footer' ); 
 	?>
-
-	<?php get_sidebar( 'footer' ); ?>
 
 	<footer id="colophon" class="site-footer">
 		<div class="container">

@@ -7,6 +7,7 @@
  * @package Airi
  */
 define( 'AIRI_SKIP_AIRI_KIRKI_CUSTOM', 1 );
+define( 'AIRI_SKIP_KIRKI', 1 );
 if ( ! function_exists( 'airi_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
@@ -51,6 +52,7 @@ if ( ! function_exists( 'airi_setup' ) ) :
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
 			'menu-1' => esc_html__( 'Primary', 'airi' ),
+			'menu-2' => esc_html__( 'Footer', 'airi' ),
 		) );
 
 		/*
@@ -132,6 +134,7 @@ function airi_widgets_init() {
 		) );
 	}
 
+	register_widget( 'Airi_Logo' );
 	register_widget( 'Airi_Social' );
 	register_widget( 'Airi_Recent_Posts' );
 
@@ -240,6 +243,99 @@ function airi_block_category() {
 add_action( 'elementor/elements/categories_registered', 'airi_block_category' );
 
 /**
+ * Customize Gutenberg Blocks
+ */
+/*
+function airi_gutenberg_block( $blockContent, $block)
+{
+	if( $block['blockName'] === 'core/gallery' ) {
+		$blockContent = $blockContent . '<pre>' . htmlspecialchars( print_r( $block, true ) ) . '</pre>';
+	}
+	return $blockContent;
+}
+
+add_filter('render_block', 'airi_gutenberg_block', 10, 2);
+*/
+
+add_shortcode( 'gallery_airi', 'airi_gallery_shortcode' );
+
+/**
+ * Builds the Gallery shortcode output.
+ *
+ * This implements the functionality of the Gallery Shortcode for displaying
+ * WordPress images on a post.
+ *
+ * @param array $attr {
+ *     Attributes of the gallery shortcode.
+ *
+ *     @type string       $order      Order of the images in the gallery. Default 'ASC'. Accepts 'ASC', 'DESC'.
+ *     @type string       $orderby    The field to use when ordering the images. Default 'menu_order ID'.
+ *                                    Accepts any valid SQL ORDERBY statement.
+ *     @type int          $id         Post ID.
+ *     @type string       $itemtag    HTML tag to use for each image in the gallery.
+ *                                    Default 'dl', or 'figure' when the theme registers HTML5 gallery support.
+ *     @type string       $icontag    HTML tag to use for each image's icon.
+ *                                    Default 'dt', or 'div' when the theme registers HTML5 gallery support.
+ *     @type string       $captiontag HTML tag to use for each image's caption.
+ *                                    Default 'dd', or 'figcaption' when the theme registers HTML5 gallery support.
+ *     @type int          $columns    Number of columns of images to display. Default 3.
+ *     @type string|int[] $size       Size of the images to display. Accepts any registered image size name, or an array
+ *                                    of width and height values in pixels (in that order). Default 'thumbnail'.
+ *     @type string		  $mode		  How to treat categories list
+ * 										empty - display from all
+ * 										rand - choose one randomly - every refresh
+ *      								day - displayed category changes daily
+ *	   @type string		  $categories A comma-separated list of IDs of categories to display. Default empty.
+ * 	   @type string       $ids        A comma-separated list of IDs of attachments to display. Default empty.
+ *     @type string       $include    A comma-separated list of IDs of attachments to include. Default empty.
+ *     @type string       $exclude    A comma-separated list of IDs of attachments to exclude. Default empty.
+ *     @type string       $link       What to link each image to. Default empty (links to the attachment page).
+ *                                    Accepts 'file', 'none'.
+ * }
+ * @return string HTML content to display gallery.
+ */
+function airi_gallery_shortcode( $attr ) {
+	if( ! empty( $attr['categories'] ) )
+	{
+		$catIds = array_filter( explode( ',', $attr['categories'] ) );
+		if( $catIds )
+		{
+			$ids = empty( $attr['ids'] ) ? [] : explode( ',', $attr['ids'] );
+			if( ! empty( $attr['mode'] ) ) {
+				$count = count( $catIds );
+				switch( $attr['mode'] ) {
+					case 'day':
+						$idx = intdiv( time(), 86400 ) % $count;
+						break;
+					case 'rand':
+						$idx = mt_rand( 0, $count - 1 );
+						break; 
+				}
+				$catIds = [ $catIds[$idx] ];
+			}
+			// $catIds = 5;
+			$params = [
+				'tax_query' => [
+					[
+						'taxonomy' => 'media_category',
+						'terms' => $catIds
+						// 'terms' => implode( ',', $catIds )
+					]
+				],
+				'numberposts' => -1,
+				'post_type' => 'attachment',
+				'fields' => 'ids'
+			];
+			$att = get_posts( $params );
+			$ids = array_merge( $ids, $att );
+			// var_dump($idx, $ids, $params, $att);
+			$attr['ids'] = implode( ',', $ids );
+		}
+	}
+	return gallery_shortcode( $attr );
+}
+
+/**
  * Elementor skins
  */
 add_action( 'elementor/init', 'airi_add_elementor_skins' );
@@ -256,6 +352,7 @@ function airi_add_elementor_skins(){
 /**
  * Widgets
  */
+require get_template_directory() . '/widgets/class-airi-logo.php';
 require get_template_directory() . '/widgets/class-airi-social.php';
 require get_template_directory() . '/widgets/class-airi-recent-posts.php';
 

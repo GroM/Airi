@@ -92,11 +92,11 @@ function airi_menu_container() {
  * Menu style 3 (Extended 1) options
  */
 function airi_get_extended1_options() {
-
+	// remove_theme_mods();
 	$default_social 	= array(
 		array(
 			'icon'		=> 'fa-facebook',
-			'link_url'  => 'https://facebook.com/yourprofile',
+			'link_url'  => 'https://facebook.com/grprovision',
 		),
 		// array(
 		// 	'icon'		=> 'fa-twitter',			
@@ -104,7 +104,7 @@ function airi_get_extended1_options() {
 		// ),
 		array(
 			'icon'		=> 'fa-instagram',			
-			'link_url'  => 'https://instagram.com/yourprofile',
+			'link_url'  => 'https://instagram.com/grprovision',
 		),
 	);
 
@@ -112,8 +112,8 @@ function airi_get_extended1_options() {
 		'cta_text'		=> get_theme_mod( 'x1_cta_text', __( 'Get a quote', 'airi' ) ),
 		'cta_url'		=> get_theme_mod( 'x1_cta_url', __( 'http://example.org/contact/', 'airi' ) ),
 		'header_social'	=> get_theme_mod( 'x1_header_social', $default_social ),
-		'email_address'	=> get_theme_mod( 'x1_email_address', 'office@example.org' ),
-		'phone_number'	=> get_theme_mod( 'x1_phone_number', '+333.222.111' ),
+		'email_address'	=> get_theme_mod( 'x1_email_address', 'provision@provision.net.pl' ),
+		'phone_number'	=> get_theme_mod( 'x1_phone_number', '+48 533 605 301' ),
 	);
 
 	return $options;
@@ -287,7 +287,8 @@ function airi_footer_credits() {
 	
 	<div class="site-info col-md-12">
 		
-		<?php if ( $credits == '' ) : ?>
+		<?php if ( $credits == '' && false ) : 
+			?>
 			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'airi' ) ); ?>"><?php
 				/* translators: %s: CMS name, i.e. WordPress. */
 				printf( esc_html__( 'Proudly powered by %s', 'airi' ), 'WordPress' );
@@ -326,15 +327,20 @@ if ( !function_exists( 'airi_site_branding' ) ) {
 		if ( has_custom_logo() ) :
 			the_custom_logo();
 		else :
-			$_tag = ( is_front_page() && is_home() ) ? 'h1' : 'p'; ?>
-			<<?php echo $_tag; ?> class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><img src="<?php echo esc_url( get_theme_file_uri( 'images/logo.svg' ) ); ?>" /> <?php bloginfo( 'name' ); ?></a></<?php echo $_tag; ?>>
-		<?php
+			$_tag = ( is_front_page() && is_home() ) ? 'h1' : 'p';
+			echo '<', $_tag, ' class="site-title">', airi_site_logo(), '</', $_tag, '>';
 			$description = get_bloginfo( 'description', 'display' );
 			if ( $description || is_customize_preview() ) : ?>
 				<p class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></p>
 			<?php
 			endif;
 		endif;
+	}
+}
+
+if ( !function_exists( 'airi_site_logo' ) ) {
+	function airi_site_logo() {
+		return '<a href="' . esc_url( home_url( '/' ) ) . '" rel="home"><img class="site-logo" src="' . esc_url( get_theme_file_uri( 'images/logo.svg' ) ) . '" /> ' . bloginfo( 'name' ) . '</a>';
 	}
 }
 
@@ -346,7 +352,7 @@ if ( ! function_exists( 'airi_header_cart_search' ) ) {
 	 */
 	function airi_header_cart_search() {
 		
-		$disable_search = get_theme_mod( 'disable_header_search' );
+		$disable_search = get_theme_mod( 'disable_header_search' ) || true;
 		?>
 		<ul class="header-search-cart">
 			<?php if ( !$disable_search ) : ?>

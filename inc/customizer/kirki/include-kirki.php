@@ -6,7 +6,7 @@
  * @package kirki-helpers
  */
 
-if ( ! class_exists( 'Kirki' ) ) {
+if ( ! ( class_exists( 'Kirki' ) || defined( 'AIRI_SKIP_KIRKI' ) ) ) {
 
 	if ( class_exists( 'WP_Customize_Section' ) && ! class_exists( 'Airi_Kirki_Installer_Section' ) ) {
 		/**
