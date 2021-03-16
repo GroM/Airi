@@ -2231,6 +2231,7 @@ ul.social-media-list li {
 
 .social-media-list.social-media-list-titles li {
 	display: block;
+	float: none;
 }
 
 .social-media-list.social-media-list-titles li a {
