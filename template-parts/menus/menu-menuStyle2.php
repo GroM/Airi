@@ -25,17 +25,18 @@ $airi_options = airi_get_extended1_options();
 			</div>
 
 			<div class="top-bar col-xl-8 col-12">
-				<div class="row">
-					<div class="ms-auto col-auto contact-item">
+				<div class="row justify-content-end">
+					<div class="col-auto contact-item">
 						<i class="fa fa-envelope"></i><a href="mailto:<?php echo antispambot( $airi_options['email_address'] ); ?>"><?php echo antispambot( $airi_options['email_address'] ); ?></a>
 					</div>
 					<div class="col-auto contact-item">
 						<i class="fa fa-phone"></i><a href="tel:<?php echo esc_attr( $airi_options['phone_number'] ); ?>"><?php echo esc_html( $airi_options['phone_number'] ); ?></a>
 					</div>
-					<div class="col-auto header-social contact-item">
-						<?php foreach ( $airi_options['header_social'] as $airi_social ) : ?>
+					<div class="col-auto header-social contact-item d-none d-md-block">
+						<?php dynamic_sidebar( 'header-social');
+							/*foreach ( $airi_options['header_social'] as $airi_social ) : ?>
 							<a target="_blank" href="<?php echo esc_url( $airi_social['link_url'] ); ?>"><i class="fa <?php echo esc_attr( $airi_social['icon'] ); ?>"></i></a>
-						<?php endforeach; ?>
+						<?php endforeach;*/ ?>
 					</div>
 				</div>
 			</div>

@@ -120,6 +120,19 @@ function airi_widgets_init() {
 		'after_title'   => '</h4>',
 	) );
 
+	register_sidebar( array(
+		'name'          => esc_html__( 'Header', 'airi' ),
+		'id'            => 'header-social',
+		'description'   => esc_html__( 'Add widgets here.', 'airi' ),
+		'before_widget' => '',
+		// 'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '',
+		// 'after_widget'  => '</section>',
+		// 'before_title'  => '<h4 class="widget-title">',
+		// 'after_title'   => '</h4>',
+	) );
+
+
 	//Footer widget areas
 	$widget_areas = get_theme_mod( 'footer_widget_areas', '4' );
 	for ( $i=1; $i <= $widget_areas; $i++ ) {

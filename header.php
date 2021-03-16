@@ -33,7 +33,6 @@
 
 	<?php
 		if ( !is_page_template( 'page-templates/template_page-builder.php') ) {
-			echo '<div class="container">';
-			echo 	'<div class="row">';
+			echo '<div class="container"><div class="row">';
 		}
 	?>

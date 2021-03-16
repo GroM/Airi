@@ -238,6 +238,10 @@ blockquote {
 	border-color: currentColor !important;
 }
 
+.btn-ar-primary a {
+	color: inherit !important;
+}
+
 button,
 .button,
 input[type="button"],
@@ -388,8 +392,16 @@ a:hover, a:active {
 	border-radius: 50%;
 	position: absolute;
 	left: 50%;
-	bottom: -8px;
+	bottom: 3px;
 	margin-left: -2px;
+}
+
+.menuStyle2 .menu-item {
+	border: 1px solid transparent;
+}
+
+.menuStyle2 .main-navigation .btn-ar-primary a:after {
+	background-color: transparent;
 }
 
 .menuStyle1.page-template-template_page-builder .sticky-wrapper {
@@ -575,7 +587,7 @@ a:hover, a:active {
 .menuStyle2 .top-bar .contact-item,
 .menuStyle3 .top-bar .contact-item {
 	font-weight: var(--ar-fw-1);
-	border-right: 1px solid #ebebeb;
+	/* border-right: 1px solid #ebebeb; */
 }
 .menuStyle2 .top-bar .contact-item .fa,
 .menuStyle3 .top-bar .contact-item .fa {
@@ -1442,12 +1454,6 @@ a:hover, a:active {
 	align-items: center;
 }
 
-.main-navigation .btn-quote {
-	display: block;
-	margin-left: 2rem;
-	margin-right: 2rem;
-}
-
 ul.header-search-cart li {
 	padding: 0;
 }
@@ -1501,8 +1507,8 @@ ul.header-search-cart .header-cart-link .count {
 @media (max-width: 991px) {
 	.menuStyle5 .last-block .socials {
 		-webkit-box-pack: center !important;
-				-ms-flex-pack: center !important;
-						justify-content: center !important;
+		-ms-flex-pack: center !important;
+		justify-content: center !important;
 	}
 
 	.menuStyle6 .site-header .top-section ul li + li {
@@ -1530,9 +1536,13 @@ ul.header-search-cart .header-cart-link .count {
 	color: var(--bs-primary-contrast);
 	display: block;
 	text-align: center;
-	padding: 0.5rem 1rem;
+	padding: 1rem;
+	font-size: 1.5rem;
+	font-weight: var(--ar-fw-2);
 	text-decoration: none;
 	text-transform: uppercase;
+	letter-spacing: 0.2rem;
+	word-spacing: 1rem;
 }
 
 /*--------------------------------------------------------------
@@ -2164,6 +2174,18 @@ ul.header-search-cart .header-cart-link .count {
 	font-size: 1rem;
 }
 
+/* Widget contact info */
+.widget_athemes_logo_widget .social a {
+	display: block;
+	text-decoration: none;
+}
+
+.widget_athemes_logo_widget .social .fa {
+	width: 1em;
+	text-align: center;
+	margin-right: 0.6rem;
+}
+
 /*--------------------------------------------------------------
 Social
 --------------------------------------------------------------*/
@@ -2175,6 +2197,7 @@ Social
 
 ul.social-media-list {
 	margin: -5px;
+	list-style-type: none;
 }
 ul.social-media-list li {
 	float: left;
@@ -2187,6 +2210,7 @@ ul.social-media-list li {
 	-webkit-backface-visibility: visible;
 	backface-visibility: visible;
 	display: inline-block;
+	text-decoration: none;
 }
 .social-media-list li a::before,
 .social-widget a::before {
@@ -2194,10 +2218,30 @@ ul.social-media-list li {
 	font-size: 1.125rem;
 	text-align: center;
 	color: #ffffff;
-	width: 50px;
-	line-height: 50px;
+	width: 3rem;
+	line-height: 3rem;
 	border-radius: 50%;
 }
+
+.header-social .social-media-list li a::before,
+.header-social .social-widget a::before {
+	line-height: 2rem;
+	width: 2rem;
+}
+
+.social-media-list.social-media-list-titles li {
+	display: block;
+}
+
+.social-media-list.social-media-list-titles li a {
+	text-decoration: none;
+}
+
+.social-media-list.social-media-list-titles li a::before {
+	display: inline-block;
+	margin-right: 0.5rem;
+}
+
 
 .social-media-list a[href*="twitter.com"]::before {
 	content: "\f099";

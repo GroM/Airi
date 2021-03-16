@@ -24,6 +24,7 @@
 		} else {
 			$airi_footer_cols = 'col-md-12';
 		}
+		$airi_footer_cols = 'col-md';
 	?>
 
 	<div id="sidebar-footer" class="footer-widgets" role="complementary">

@@ -15,8 +15,7 @@
 
 	<?php
 		if ( !is_page_template( 'page-templates/template_page-builder.php') ) {
-			echo 	'</div>';
-			echo '</div>';
+			echo '</div></div>';
 		}
 		
 		wp_nav_menu( array(

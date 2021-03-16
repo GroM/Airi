@@ -97,15 +97,22 @@ function airi_get_extended1_options() {
 		array(
 			'icon'		=> 'fa-facebook',
 			'link_url'  => 'https://facebook.com/grprovision',
+			'title'		=> 'Śledź na Facebooku'
 		),
 		// array(
 		// 	'icon'		=> 'fa-twitter',			
 		// 	'link_url'  => 'https://twitter.com/yourprofile',
 		// ),
 		array(
-			'icon'		=> 'fa-instagram',			
+			'icon'		=> 'fa-instagram',
 			'link_url'  => 'https://instagram.com/grprovision',
+			'title'		=> 'Zobacz Instagram'
 		),
+		array(
+			'icon'		=> 'fa-youtube',
+			'link_url'  => 'https://youtube.com/grprovision',
+			'title'		=> 'Obejrzyj na YouTube'
+		)
 	);
 
 	$options = array(
@@ -114,6 +121,10 @@ function airi_get_extended1_options() {
 		'header_social'	=> get_theme_mod( 'x1_header_social', $default_social ),
 		'email_address'	=> get_theme_mod( 'x1_email_address', 'provision@provision.net.pl' ),
 		'phone_number'	=> get_theme_mod( 'x1_phone_number', '+48 533 605 301' ),
+		'name'			=> get_theme_mod( 'x1_name', 'Provision s.c' ),
+		'address_line1'	=> get_theme_mod( 'x1_address_line1', 'ul. Boczna Kasprowicza 10' ),
+		'address_line2'	=> get_theme_mod( 'x1_address_line2', '37-100 Łańcut' ),
+		'email_contact'	=> get_theme_mod( 'x1_email_contact', 'zamowienia@provision.net.pl' ),
 	);
 
 	return $options;
@@ -322,7 +333,7 @@ add_filter( 'widget_tag_cloud_args', 'airi_tag_cloud_widget' );
 /**
  * Site branding
  */
-if ( !function_exists( 'airi_site_branding' ) ) {
+if ( ! function_exists( 'airi_site_branding' ) ) {
 	function airi_site_branding() {
 		if ( has_custom_logo() ) :
 			the_custom_logo();
@@ -338,12 +349,48 @@ if ( !function_exists( 'airi_site_branding' ) ) {
 	}
 }
 
-if ( !function_exists( 'airi_site_logo' ) ) {
+if ( ! function_exists( 'airi_site_logo' ) ) {
 	function airi_site_logo() {
 		return '<a href="' . esc_url( home_url( '/' ) ) . '" rel="home"><img class="site-logo" src="' . esc_url( get_theme_file_uri( 'images/logo.svg' ) ) . '" /> ' . bloginfo( 'name' ) . '</a>';
 	}
 }
 
+if ( ! function_exists( 'airi_site_contact_info' ) ) {
+	function airi_site_contact_info($options = false)
+	{
+		if ( ! $options )
+		{
+			$options = airi_get_extended1_options();
+		}
+		return <<<tpl
+	<address>{$options['name']}<br/>
+	{$options['address_line1']}</br>
+	{$options['address_line2']}</address>
+tpl;
+	}
+}
+
+if ( ! function_exists( 'airi_site_social' ) ) {
+	function airi_site_social($options = false)
+	{
+		if ( ! $options )
+		{
+			$options = airi_get_extended1_options();
+		}
+		$out = [];
+		foreach ( $options['header_social'] as $airi_social )
+		{
+			$out[] = '<a target="_blank" href="';
+			$out[] = esc_url( $airi_social['link_url'] );
+			$out[] = '"><i class="fa ';
+			$out[] = esc_attr( $airi_social['icon'] ); 
+			$out[] = '"></i>';
+			$out[] = empty($airi_social['title']) ? '' : $airi_social['title'];
+			$out[] = "</a>\n";
+		}
+		return implode('', $out);
+	}
+}
 
 if ( ! function_exists( 'airi_header_cart_search' ) ) {
 	/**
